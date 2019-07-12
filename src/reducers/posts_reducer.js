@@ -1,3 +1,10 @@
+import { FETCH_POSTS } from '../actions';
+
 export default function(state = [], action) {
-  return state;
+  if (action.type == FETCH_POSTS) {
+    return action.payload
+  }
+  else {
+    return state;
+  }
 }
