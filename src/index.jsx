@@ -1,3 +1,4 @@
+// React & Reux Modules //
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -6,6 +7,7 @@ import reduxPromise from 'redux-promise';
 import logger from 'redux-logger';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createHistory as history } from 'history';
+import { reducer as formReducer } from 'redux-form';
 
 // Assets //
 import '../assets/stylesheets/application.scss';
@@ -14,7 +16,8 @@ import '../assets/stylesheets/application.scss';
 import postsReducer from './reducers/posts_reducer.js';
 
 const reducers = combineReducers({
-  posts: postsReducer
+  posts: postsReducer,
+  form: formReducer
 });
 
 // Containers //
