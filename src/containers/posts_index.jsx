@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Call actions //
-import { fetchPosts } from '../actions';
+import { fetchPosts } from '../actions/index';
 
 class PostsIndex extends Component {
   componentWillMount() {
@@ -14,7 +14,7 @@ class PostsIndex extends Component {
   renderPosts() {
     if(!this.props.posts.length) {
       return (
-        <h3 style={{color: 'red'}}>Sorry we have not any post to display</h3>
+        <h3>Sorry we have not any post to display</h3>
       )
     }
     return this.props.posts.map((post) => {
@@ -43,12 +43,12 @@ class PostsIndex extends Component {
   }
 }
 
-function mapStateToProps(reduxState) {
-  return { posts: reduxState.posts }
+function mapStateToProps(state) {
+  return { posts: state.posts }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators( { fetchPosts }, dispatch);
+  return bindActionCreators({ fetchPosts }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (PostsIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(PostsIndex);

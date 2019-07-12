@@ -1,17 +1,12 @@
-import { FETCH_POSTS, FETCH_POST } from '../actions';
+import { FETCH_POSTS, FETCH_POST } from '../actions/index';
 
-export default function(state = {}, action) {
-  if (action.type == FETCH_POSTS) {
-    return action.payload;
-  }
-  else {
-    return state;
-  }
-
-  if (action.type == FETCH_POSTS) {
-    return action.payload;
-  }
-  else {
-    return state;
+export default function(state = [], action) {
+  switch (action.type) {
+    case FETCH_POSTS:
+      return action.payload;
+    case FETCH_POST:
+      return [ action.payload ];
+    default:
+      return state;
   }
 }

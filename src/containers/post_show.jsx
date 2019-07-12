@@ -4,16 +4,20 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Call actions //
-import { fetchPost } from '../actions';
+import { fetchPost } from '../actions/index';
 
 class PostShow extends Component {
-  componentDidMount() {
-    // console.log(this.props.fetchPost(this.props.match.params.id))
-
-    this.props.fetchPost(this.props);
+  componentWillMount() {
+    if (!this.props.post) {
+      this.props.fetchPost(this.props.match.params.id)
+    }
   }
 
   render() {
+    if (!this.props.post) {
+      return <p>Loading...</p>;
+    }
+
     return (
       <div>
         <div className="post-item">
@@ -28,17 +32,17 @@ class PostShow extends Component {
   }
 }
 
-function mapStateToProps(reduxState, param) {
-  const postIdFromUrl = parseInt(param.match.params.id, 10);
-  const post = reduxState.posts.find(post => post.id === postIdFromUrl);
+function mapStateToProps(state, ownProps) {
+  const postIdFromUrl = parseInt(ownProps.match.params.id, 10);
+  const post = state.posts.find(p => p.id === postIdFromUrl);
   return { post }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators( { fetchPost }, dispatch);
+  return bindActionCreators({ fetchPost }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (PostShow);
+export default connect(mapStateToProps, mapDispatchToProps)(PostShow);
 
 
 
