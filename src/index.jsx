@@ -20,6 +20,7 @@ const reducers = combineReducers({
 // Containers //
 import PostsIndex from './containers/posts_index.jsx';
 import PostShow from './containers/post_show.jsx';
+import PostNew from './containers/post_new.jsx';
 
 
 const middlewares = applyMiddleware(reduxPromise, logger);
@@ -31,6 +32,7 @@ ReactDOM.render(
       <div className="thin-container">
         <Switch>
           <Route path="/" exact component={PostsIndex} />
+          <Route path="/posts/new" exact component={PostNew} />
           <Route path="/posts/:id" component={PostShow} />
         </Switch>
       </div>

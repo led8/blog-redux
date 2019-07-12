@@ -15,7 +15,9 @@ class PostShow extends Component {
 
   render() {
     if (!this.props.post) {
-      return <p>Loading...</p>;
+      return (
+        <p>Loading...</p>
+      );
     }
 
     return (

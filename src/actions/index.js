@@ -1,5 +1,5 @@
 export const FETCH_POSTS = "FETCH_POSTS";
-export const FETCH_POST = "FETCH_POST";
+export const CREATE_POST = "CREATE_POST";
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api/posts';
 const API_KEY = '123'
@@ -14,6 +14,23 @@ export function fetchPosts() {
       }
   });
 }
+
+export function createPost(body) {
+  return fetch(`${ROOT_URL}?key=${API_KEY}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  })
+    .then(response => response.json())
+    .then((data) => {
+      return {
+        type: CREATE_POST,
+        payload: data
+      }
+  });
+}
+
+export const FETCH_POST = "FETCH_POST";
 
 export function fetchPost(id) {
   return fetch(`${ROOT_URL}/${id}?key=${API_KEY}`)
